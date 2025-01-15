@@ -1,8 +1,8 @@
 package com.example.unitconverterapp
 
 
-
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -29,43 +29,50 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 
 @Composable
-fun ConversionMenu(list: List<Conversion>,modifier: Modifier=Modifier,convert:(Conversion)->Unit) {
-    var displayingText by remember{ mutableStateOf("Select the Conversion type") }
+fun ConversionMenu(
+    list: List<Conversion>,
+    modifier: Modifier = Modifier,
+    convert: (Conversion) -> Unit
+) {
+    var displayingText by remember { mutableStateOf("Select the Conversion type") }
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
     var expanded by remember { mutableStateOf(false) }
-    val icon=if(expanded)
+    val icon = if (expanded)
         Icons.Filled.KeyboardArrowUp
     else
         Icons.Filled.KeyboardArrowDown
+    Column {
 
-    OutlinedTextField(
-        value = displayingText, onValueChange ={displayingText=it},
-        textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
-        modifier = Modifier.fillMaxWidth()
-            .onGloballyPositioned {cordinates->
-                textFieldSize=cordinates.size.toSize()
-            },
-        label = { Text(text = "Conversion Type") },
-        trailingIcon = {
-            Icon(icon, contentDescription = "icon",
-            modifier.clickable { expanded=!expanded })
-        },
-        readOnly = true
-        )
-    DropdownMenu(
-        expanded=expanded, onDismissRequest = {expanded=false},
-        modifier=modifier.width(with(LocalDensity.current){textFieldSize.width.toDp()})
-    ) {
-        list.forEach {conversion ->
-            DropdownMenuItem(
-                onClick = {
-                    expanded=false
-                    displayingText=conversion.description
-                    convert(conversion)
+        OutlinedTextField(
+            value = displayingText, onValueChange = { displayingText = it },
+            textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { cordinates ->
+                    textFieldSize = cordinates.size.toSize()
                 },
-                text={ Text(text = conversion.description) }
-            )
+            label = { Text(text = "Conversion Type") },
+            trailingIcon = {
+                Icon(icon, contentDescription = "icon",
+                    modifier.clickable { expanded = !expanded })
+            },
+            readOnly = true
+        )
+        DropdownMenu(
+            expanded = expanded, onDismissRequest = { expanded = false },
+            modifier = modifier.width(with(LocalDensity.current) { textFieldSize.width.toDp() })
+        ) {
+            list.forEach { conversion ->
+                DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        displayingText = conversion.description
+                        convert(conversion)
+                    },
+                    text = { Text(text = conversion.description) }
+                )
 
+            }
         }
     }
 
