@@ -1,4 +1,4 @@
-package com.example.unitconverterapp
+package com.example.unitconverterapp.composables
 
 import android.content.Context
 import android.widget.Toast
@@ -26,11 +26,12 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.unitconverterapp.data.Conversion
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputBlock(
-    conversion:Conversion,
+    conversion: Conversion,
     inputText:MutableState<String>,
     modifier: Modifier=Modifier,
     context: Context = LocalContext.current,
