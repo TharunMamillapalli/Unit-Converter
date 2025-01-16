@@ -1,6 +1,7 @@
 package com.example.unitconverterapp.data
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -15,6 +16,9 @@ interface ConverterDAO {
 
     @Update
     suspend fun updateResult(result: ConversionResult)
+
+    @Delete
+    suspend fun deleteResult(result: ConversionResult)
 
     @Query("DELETE FROM result_table")
     suspend fun deleteAll()

@@ -7,6 +7,10 @@ class ConverterRepositoryImpl(private val dao: ConverterDAO):ConverterRepository
         dao.insertResult(result)
     }
 
+    override suspend fun deleteResult(result: ConversionResult) {
+        dao.deleteResult(result)
+    }
+
     override suspend fun updateResult(result: ConversionResult) {
         dao.updateResult(result)
     }

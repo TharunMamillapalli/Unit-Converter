@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unitconverterapp.ConverterViewModel
 import com.example.unitconverterapp.ConverterViewModelFactory
+import com.example.unitconverterapp.composables.History.HistoryScreen
 
 @Composable
 fun BaseScreen(
@@ -28,7 +28,12 @@ fun BaseScreen(
             converterViewModel.addResult(message1,message2)
         }
         Spacer(modifier = modifier.height(20.dp))
-        HistoryScreen(historyList)
+        HistoryScreen(historyList,modifier,{item->
+            converterViewModel.removeResult(item)
+        },{
+            converterViewModel.clearAll()
+        }
+        )
     }
 
 }

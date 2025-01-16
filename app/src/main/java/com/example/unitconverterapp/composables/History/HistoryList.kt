@@ -1,4 +1,4 @@
-package com.example.unitconverterapp.composables
+package com.example.unitconverterapp.composables.History
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
