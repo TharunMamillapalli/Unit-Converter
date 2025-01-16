@@ -18,6 +18,7 @@ class ConverterViewModel(private val repository: ConverterRepository) : ViewMode
         Conversion(5, "Miles to Kilometers", "mi", "km", 1.60934),
         Conversion(6, "Kilometers to Miles", "km", "mi", 0.621371),
     )
+    val resultList=repository.getSavedResults()
 
     fun addResult(message1:String,message2:String){
         viewModelScope.launch (Dispatchers.IO){
