@@ -22,7 +22,7 @@ abstract class ConverterDataBase:RoomDatabase() {
                     instance= Room.databaseBuilder(
                         context.applicationContext,
                         ConverterDataBase::class.java,
-                        ""
+                        "conversion_data_database"
                     ).build()
                 }
                 return instance
