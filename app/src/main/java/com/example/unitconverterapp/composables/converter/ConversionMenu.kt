@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -35,7 +36,7 @@ fun ConversionMenu(
     modifier: Modifier = Modifier,
     convert: (Conversion) -> Unit
 ) {
-    var displayingText by remember { mutableStateOf("Select the Conversion type") }
+    var displayingText by rememberSaveable { mutableStateOf("Select the Conversion type") }
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
     var expanded by remember { mutableStateOf(false) }
     val icon = if (expanded)
